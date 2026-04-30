@@ -403,8 +403,14 @@
             `;
         }, 800);
     }
-
+function goDetail(title, price, desc, img) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = '시간당 ₩' + price;
+        document.getElementById('modalDesc').innerText = desc;
+        document.getElementById('modalImg').src = img;
+        document.getElementById('detailModal').style.display = 'flex'; // 'block' 대신 'flex' 사용
+    }
 </script>
-
+<div id="detailModal" class="modal">
 </body>
 </html>
