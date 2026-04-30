@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rydex | 2종소형 면허 합격의 지름길</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo" onclick="navigate('home')">🏍 RYDEX</div>
+    <nav>
+        <a onclick="navigate('about')">연습장소개</a>
+        <a onclick="navigate('notice')">공지사항</a>
+        <a onclick="navigate('map')">찾아오시는 길</a>
+        <a onclick="navigate('lookup')">비회원 예약조회</a>
+        <a onclick="navigate('signup')" class="highlight">회원가입</a>
+        <a onclick="navigate('login')">로그인</a>
+        <!-- 상담문의 옆에 온라인 상담 추가 -->
+        <a onclick="toggleContact()" class="contact-tab">상담문의</a>
+        <a href="https://forms.gle/75aV2o1hNDyiR5Td9" class="online-contact">온라인 상담</a>
+    </nav>
+</header>
+
+<div id="about" class="page" style="display:none;">
+    <div class="about-hero">
+    
+        <h2>RYDEX 연습장소개</h2>
+        <p>시험장과 동일한 환경, 최적의 트랙에서 합격을 경험하세요.</p>
+    </div>
+    <div class="content-container">
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="icon">🎯</div>
+                <h3>최고의 합격률</h3>
+                <p>시험장 규격과 1:1 일치하는 트랙에서 실전보다 더 실전 같은 연습을 제공합니다.</p>
+            </div>
+            <div class="about-card highlight-card">
+                <div class="icon">🏍️</div>
+                <h3>보유 기종: Yamaha MT-03</h3>
+                <p>시험장 표준 기종인 MT-03을 전 지점에 보유하고 있습니다.</p>
+            </div>
+            <div class="about-card">
+                <div class="icon">🛡️</div>
+                <h3>안전 우선주의</h3>
+                <p>전문 강사진의 가이드와 안전 장비 지원으로 초보자도 안심하고 연습할 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 비회원 예약조회 페이지 -->
+<div id="lookup" class="page" style="display:none;">
+    <div class="auth-box lookup-container">
+        <h2>비회원 예약조회</h2>
+        <p>예약 시 발급된 예약번호와 휴대폰 번호를 입력해 주세요.</p>
+        
+        <div class="form-group">
+            <label class="input-label">예약번호</label>
+            <input type="text" id="orderNumber" placeholder="예: RDX-2026-0000">
+            
+            <label class="input-label">휴대폰 번호</label>
+            <input type="tel" id="userPhone" placeholder="'-' 제외하고 입력">
+        </div>
+        
+        <button class="main-btn" onclick="searchReservation()">예약 정보 조회하기</button>
+        
+        <!-- 조회 결과 표시 영역 (기본 숨김) -->
+        <div id="lookupResult" class="lookup-result-box" style="display:none;">
+            <div class="result-header">조회 결과</div>
+            <div class="result-content">
+                <p>일치하는 예약 정보가 없습니다. 입력하신 내용을 다시 확인해 주세요.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 상담문의 카드 정보 -->
+<div id="contactBox" class="contact-card">
+    <h4>실시간 상담문의</h4>
+    <p class="name">김종현 대표</p>
+    <p class="phone">010-4150-0530</p>
+    <small>평일/주말 09:00 ~ 21:00</small>
+</div>
+
+<div id="home" class="page active">
+    <section class="banner" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./images/Yamaha_YZF_R1_black-HD_Desktop_Wallpaper_1366x768.jpg') center/cover;">
+    <div class="banner-text">
+        <span class="tag">2종 소형 면허 합격 보장</span>
+        <h1>Ride with Yamaha MT-03</h1>
+        <p>적절한 기종과 시험장 규격 트랙으로 완벽 대비하세요</p>
+    </div>
+</section>
+</section>
+
+    <section class="search-box">
+        <div class="input-group">
+            <label>연습 날짜</label>
+            <input type="date">
+        </div>
+        <div class="input-group">
+            <label>연습장 위치</label>
+            <select id="region">
+                <option value="all">전체 연습장</option>
+                <option value="대구">대구 센터</option>
+                <option value="서울">서울 센터</option>
+                <option value="부산">부산 센터</option>
+                <option value="인천">인천 센터</option>
+                <option value="광주">광주 센터</option>
+            </select>
+        </div>
+        <button class="search-btn" onclick="filterCards()">빈 시간 조회</button>
+    </section>
+
+    <!-- 카드 리스트 영역 -->
+   <section class="list" id="cardList">
+        <!-- 대구점 -->
+        <div class="card" data-region="대구" onclick="goDetail('대구 합격 완성 트랙','20,000','굴절 코스 특화. MT-03 및 R1 스타일 연습 가능.','https://images.unsplash.com/photo-1558981403-c5f9891c9b06')">
+            <div class="badge">대구점</div>
+           <img src="./images/daegu_track.jpg" alt="대구 연습장">
+            <div class="info">
+                <h3>대구 면허시험 규격 트랙</h3>
+                <div class="price-row"><span>₩20,000</span><button class="mini-btn">예약</button></div>
+            </div>
+        </div>
+
+        <!-- 서울점 -->
+        <div class="card" data-region="서울" onclick="goDetail('서울 면허 마스터 서킷','30,000','시험장보다 더 정밀한 코스 설계. 베테랑 강사 상주.','https://images.unsplash.com/photo-1444491741275-3747c53c99b4?auto=format&fit=crop&w=800')">
+        <div class="badge">서울점</div>
+        <img src="./images/seoul_track.jpg" alt="서울 연습장">
+        <div class="info">
+            <h3>서울 면허시험 규격 트랙</h3>
+            <div class="price-row"><span>₩30,000</span><button class="mini-btn">예약</button></div>
+        </div>
+    </div>
+
+        <!-- 부산점[cite: 7] -->
+        <div class="card" data-region="부산" onclick="goDetail('부산 합격 완성 트랙','25,000','영남권 최대 규모 합격 완성 코스 보유.','https://images.unsplash.com/photo-1622185135505-2d795003994a')">
+            <div class="badge">부산점</div>
+            <img src="./images/busan_track.jpg" alt="부산 연습장">
+            <div class="info">
+                <h3>부산 면허시험 규격 트랙</h3>
+                <div class="price-row"><span>₩25,000</span><button class="mini-btn">예약</button></div>
+            </div>
+        </div>
+
+        <!-- 인천점[cite: 7] -->
+        <div class="card" data-region="인천" onclick="goDetail('인천 테크니컬 트랙','22,000','인천 시험장 최접근성 및 동일 코스 규격.','https://images.unsplash.com/photo-1591637333184-19aa84b3e01f')">
+            <div class="badge">인천점</div>
+            <img src="./images/incheon_track.jpg" alt="인천 연습장">
+            <div class="info">
+                <h3>인천 면허시험 규격 트랙</h3>
+                <div class="price-row"><span>₩22,000</span><button class="mini-btn">예약</button></div>
+            </div>
+        </div>
+
+        <!-- 광주점[cite: 7] -->
+        <div class="card" data-region="광주" onclick="goDetail('광주 면허 마스터','20,000','호남권 유일 MT-03 전문 연습장 운영.','https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800')">
+        <div class="badge">광주점</div>
+        <img src="./images/gwangju_track.jpg" alt="광주 연습장">
+        <div class="info">
+            <h3>광주 면허시험 규격 트랙</h3>
+            <div class="price-row"><span>₩20,000</span><button class="mini-btn">예약</button></div>
+        </div>
+    </div>
+    </section>
+</div>
+<div id="map" class="page" style="display:none;">
+    <div class="content-container">
+        <h2 style="margin-bottom: 20px;">찾아오시는 길</h2>
+        <div class="map-wrapper">
+            <!-- 보내주신 구글 지도 iframe 삽입 -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3233.1153167948655!2d128.5943907!3d35.8706908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565e3c98aa0b1bd%3A0xa7b3482d879ffba0!2z66-4656Y6rK97JiB6rWQ7Jyh7JuQ!5e0!3m2!1sko!2skr!4v1777530515326!5m2!1sko!2skr" 
+                width="100%" 
+                height="500" 
+                style="border:0; border-radius: 12px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+            <p><strong>주소:</strong> 대구광역시 중구 (미래경영교육원)</p>
+            <p><strong>연락처:</strong> 010-4150-0530</p>
+        </div>
+    </div>
+</div>
+
+<!-- 하단 섹션들은 메뉴 클릭 시에만 표시됨 -->
+<div id="signup" class="page" style="display:none;">
+    <div class="auth-box">
+        <h2>멤버십 가입</h2>
+        <div class="form-group">
+            <input type="text" placeholder="이름 (실명)">
+            <input type="email" placeholder="이메일 주소">
+            <input type="password" placeholder="비밀번호">
+            <input type="tel" placeholder="연락처 (- 제외)">
+        </div>
+        <button class="main-btn" onclick="alert('가입 신청이 완료되었습니다!')">회원가입 완료</button>
+    </div>
+</div>
+
+<div id="login" class="page" style="display:none;">
+    <div class="auth-box">
+        <h2>로그인</h2>
+        <div class="form-group">
+            <input type="email" placeholder="이메일 주소">
+            <input type="password" placeholder="비밀번호">
+        </div>
+        <button class="main-btn">로그인</button>
+    </div>
+</div>
+
+<div id="about" class="page" style="display:none;">
+    <div class="content-container">
+        <h2>About RYDEX</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>미션</h3>
+                <p>라이더들의 첫 시작인 2종 소형 면허 취득을 안전하고 빠르게 돕습니다.</p>
+            </div>
+            <div class="about-card highlight-card">
+                <h3>보유 기종: Yamaha MT-03</h3>
+                <p>시험장 표준 기종인 MT-03을 전 지점에 보유하고 있습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notice" class="page" style="display:none;">
+    <div class="content-container">
+        <h2 class="section-title">공지사항</h2>
+        <div class="notice-list">
+            <!-- 공지 아이템 1 -->
+            <div class="notice-item active">
+                <div class="notice-header" onclick="toggleAccordion(this)">
+                    <span class="notice-tag">필독</span>
+                    <p>연습장 이용 전 예약 확인 안내</p>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="notice-body">
+                    <p>연습장 방문 전 반드시 비회원 예약조회 또는 회원 로그인을 통해 예약 시간을 확인해 주세요. 원활한 연습을 위해 예약 시간 10분 전 도착을 권장합니다.</p>
+                </div>
+            </div>
+
+            <!-- 공지 아이템 2 -->
+            <div class="notice-item">
+                <div class="notice-header" onclick="toggleAccordion(this)">
+                    <span class="notice-tag">안내</span>
+                    <p>보호장구 및 헬멧 대여 서비스 관련</p>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="notice-body">
+                    <p>RYDEX 전 지점에서는 연습 시 필요한 헬멧, 무릎 보호대, 팔꿈치 보호대를 무상으로 대여해 드리고 있습니다. 개인 장비가 없으셔도 안심하고 방문하세요.</p>
+                </div>
+            </div>
+
+            <!-- 공지 아이템 3 -->
+            <div class="notice-item">
+                <div class="notice-header" onclick="toggleAccordion(this)">
+                    <span class="notice-tag">이벤트</span>
+                    <p>2026년 합격 보장 프로모션 진행 중</p>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="notice-body">
+                    <p>2종 소형 면허 취득 시까지 트랙 이용료 할인 혜택을 드립니다. 자세한 내용은 상담문의 버튼을 통해 김종현 대표에게 문의하세요.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="map" class="page" style="display:none;"><div class="content-container"><h2>찾아오시는 길</h2><div class="map-placeholder">지점별 지도 로드 중...</div></div></div>
+<div id="notice" class="page" style="display:none;"><div class="content-container"><h2>공지사항</h2><p>새로운 소식이 없습니다.</p></div></div>
+<div id="lookup" class="page" style="display:none;"><div class="content-container"><h2>비회원 예약조회</h2><p>예약번호를 확인해 주세요.</p></div></div>
+
+<script>
+    function showPage(id){
+        // 모든 페이지 숨기기
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        // 상담문의 카드도 페이지 전환 시 닫기
+        document.getElementById('contactBox').style.display = 'none';
+        
+        const activePage = document.getElementById(id);
+        if(activePage) activePage.style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function navigate(page){
+        history.pushState({page}, "", "#"+page);
+        showPage(page);
+    }
+
+    function toggleContact() {
+        const box = document.getElementById('contactBox');
+        box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+    }
+
+    window.onpopstate = e => showPage(e.state ? e.state.page : 'home');
+
+    function filterCards(){
+        let region = document.getElementById("region").value;
+        document.querySelectorAll(".card").forEach(card => {
+            card.style.display = (region === "all" || card.dataset.region === region) ? "block" : "none";
+        });
+    }
+
+    function goDetail(title, price, desc, img){
+        alert(title + " 상세 페이지 준비 중");
+    }
+
+   
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        item.classList.toggle('active');
+    }
+    // ... 기존 navigate, showPage 함수 등은 그대로 유지됩니다.
+
+    // 예약 조회 시뮬레이션 함수
+    function searchReservation() {
+        const orderNum = document.getElementById('orderNumber').value;
+        const resultBox = document.getElementById('lookupResult');
+        
+        if(!orderNum) {
+            alert('예약번호를 입력해 주세요.');
+            return;
+        }
+        
+        // 실제 데이터 연동 전 로딩 느낌 전달
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `
+            <div class="result-header">조회 중...</div>
+            <div class="result-content" style="text-align:center; padding: 20px;">
+                잠시만 기다려 주세요.
+            </div>
+        `;
+        
+        setTimeout(() => {
+            resultBox.innerHTML = `
+                <div class="result-header">조회 결과</div>
+                <div class="result-content">
+                    <p style="color:#ff3b3b; font-weight:700;">일치하는 예약 내역이 없습니다.</p>
+                    <p style="font-size:13px; margin-top:5px;">예약번호가 기억나지 않으시면 상담문의를 이용해 주세요.</p>
+                </div>
+            `;
+        }, 800);
+    }
+
+</script>
+
+</body>
+</html>
