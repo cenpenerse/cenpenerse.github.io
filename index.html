@@ -117,7 +117,7 @@
     <!-- 카드 리스트 영역 -->
    <section class="list" id="cardList">
         <!-- 대구점 -->
-        <div class="card" data-region="대구" onclick="goDetail('대구 합격 완성 트랙','20,000','굴절 코스 특화. MT-03 및 R1 스타일 연습 가능.','https://images.unsplash.com/photo-1558981403-c5f9891c9b06')">
+        <div class="card" data-region="대구" onclick="goDetail('대구 합격 완성 트랙','20,000','굴절 코스 특화. MT-03 및 R1 스타일 연습 가능.','./images/daegu_track.jpg')">
             <div class="badge">대구점</div>
            <img src="./images/daegu_track.jpg" alt="대구 연습장">
             <div class="info">
@@ -127,7 +127,7 @@
         </div>
 
         <!-- 서울점 -->
-        <div class="card" data-region="서울" onclick="goDetail('서울 면허 마스터 서킷','30,000','시험장보다 더 정밀한 코스 설계. 베테랑 강사 상주.','https://images.unsplash.com/photo-1444491741275-3747c53c99b4?auto=format&fit=crop&w=800')">
+        <div class="card" data-region="서울" onclick="goDetail('서울 면허 마스터 서킷','30,000','시험장보다 더 정밀한 코스 설계. 베테랑 강사 상주.','./images/seoul_track.jpg')">
         <div class="badge">서울점</div>
         <img src="./images/seoul_track.jpg" alt="서울 연습장">
         <div class="info">
@@ -137,7 +137,7 @@
     </div>
 
         <!-- 부산점[cite: 7] -->
-        <div class="card" data-region="부산" onclick="goDetail('부산 합격 완성 트랙','25,000','영남권 최대 규모 합격 완성 코스 보유.','https://images.unsplash.com/photo-1622185135505-2d795003994a')">
+        <div class="card" data-region="부산" onclick="goDetail('부산 합격 완성 트랙','25,000','영남권 최대 규모 합격 완성 코스 보유.','./images/busan_track.jpg')">
             <div class="badge">부산점</div>
             <img src="./images/busan_track.jpg" alt="부산 연습장">
             <div class="info">
@@ -147,7 +147,7 @@
         </div>
 
         <!-- 인천점[cite: 7] -->
-        <div class="card" data-region="인천" onclick="goDetail('인천 테크니컬 트랙','22,000','인천 시험장 최접근성 및 동일 코스 규격.','https://images.unsplash.com/photo-1591637333184-19aa84b3e01f')">
+        <div class="card" data-region="인천" onclick="goDetail('인천 테크니컬 트랙','22,000','인천 시험장 최접근성 및 동일 코스 규격.','./images/incheon_track.jpg')">
             <div class="badge">인천점</div>
             <img src="./images/incheon_track.jpg" alt="인천 연습장">
             <div class="info">
@@ -157,7 +157,7 @@
         </div>
 
         <!-- 광주점[cite: 7] -->
-        <div class="card" data-region="광주" onclick="goDetail('광주 면허 마스터','20,000','호남권 유일 MT-03 전문 연습장 운영.','https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800')">
+        <div class="card" data-region="광주" onclick="goDetail('광주 면허 마스터','20,000','호남권 유일 MT-03 전문 연습장 운영.','./images/gwangju_track.jpg')">
         <div class="badge">광주점</div>
         <img src="./images/gwangju_track.jpg" alt="광주 연습장">
         <div class="info">
@@ -273,9 +273,42 @@
     </div>
 </div>
 
+<div id="detailModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeDetail()">&times;</span>
+        <img id="modalImg" src="" alt="지점 이미지">
+        <div class="modal-info">
+            <h2 id="modalTitle">지점명</h2>
+            <p id="modalPrice" class="modal-price">₩0</p>
+            <div class="modal-desc-box">
+                <h4>상세 설명</h4>
+                <p id="modalDesc">설명 내용</p>
+            </div>
+            <div class="modal-spec">
+                <span>📍 시험장 동일 규격</span>
+                <span>🏍️ MT-03 보유</span>
+                <span>🛡️ 보호구 무상대여</span>
+            </div>
+            <button class="main-btn" onclick="alert('예약 페이지로 이동합니다.')">지금 바로 예약하기</button>
+        </div>
+    </div>
+</div>
+
 <div id="map" class="page" style="display:none;"><div class="content-container"><h2>찾아오시는 길</h2><div class="map-placeholder">지점별 지도 로드 중...</div></div></div>
 <div id="notice" class="page" style="display:none;"><div class="content-container"><h2>공지사항</h2><p>새로운 소식이 없습니다.</p></div></div>
 <div id="lookup" class="page" style="display:none;"><div class="content-container"><h2>비회원 예약조회</h2><p>예약번호를 확인해 주세요.</p></div></div>
+
+<footer>
+    <div class="footer-content">
+        <p><strong>(주) RYDEX 라이덱스</strong> | 대표자: 김종현 | 사업자등록번호: 000-00-00000</p>
+        <p>주소: 대구광역시 중구 (미래경영교육원)</p>
+        <p>문의: 010-4150-0530 | 이메일: contact@rydex.com</p>
+        <div class="social-links" style="margin-top: 15px;">
+            <span>Instagram</span> | <span>YouTube</span> | <span>Blog</span>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.5;">© 2026 RYDEX. All rights reserved.</p>
+    </div>
+</footer>
 
 <script>
     function showPage(id){
@@ -318,6 +351,28 @@
         item.classList.toggle('active');
     }
     // ... 기존 navigate, showPage 함수 등은 그대로 유지됩니다.
+
+    // 상세 팝업 열기 함수
+    function goDetail(title, price, desc, img) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = '시간당 ₩' + price;
+        document.getElementById('modalDesc').innerText = desc;
+        document.getElementById('modalImg').src = img;
+        document.getElementById('detailModal').style.display = 'flex';
+    }
+
+    // 팝업 닫기 함수[cite: 3]
+    function closeDetail() {
+        document.getElementById('detailModal').style.display = 'none';
+    }
+
+    // 팝업 바깥 영역 클릭 시 닫기[cite: 3]
+    window.onclick = function(event) {
+        const modal = document.getElementById('detailModal');
+        if (event.target == modal) {
+            closeDetail();
+        }
+    }
 
     // 예약 조회 시뮬레이션 함수
     function searchReservation() {
